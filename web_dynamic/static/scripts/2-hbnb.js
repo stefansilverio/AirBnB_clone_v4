@@ -1,21 +1,21 @@
 $('document').ready(function () {
-
   let amens = {};
   $('input[type=checkbox]').change(function () {
     let name = $(this).attr('data-name');
+    let id = $(this).attr('data-id');
     if ($(this).is(':checked')) {
-      amens.push(name);
-    } else {
-      delete amens[name];
+      amens[id] = name;
+    } else if (!$(this).is(':checked')) {
+      delete amens[id];
     }
-    $('.amenities h4').text(amens.join(', '));
-  ]});
+    $('.amenities h4').text(Object.values(amens).join(', '));
+  });
 
-    if (status === 'OK') {
+  $.get('http://0.0.0.0:5001/api/v1/status/', function (data) {
+    if (data.status === 'OK') {
       $('#api_status').addClass('available');
     } else {
-      amens = amens.filter(amen => amen !== name);
+      $('#api_status').removeClass('available');
     }
-    $('.amenities h4').text(amens.join(', '));
-
+  });
 });
