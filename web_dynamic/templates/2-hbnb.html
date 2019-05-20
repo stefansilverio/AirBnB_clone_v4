@@ -10,7 +10,7 @@
 
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../static/scripts/1-hbnb.js"></script>
+    <script type="text/javascript" src="../static/scripts/2-hbnb.js"></script>
 
     <!-- FAVICON -->
 
@@ -39,6 +39,7 @@
 	 ********************** -->
 
     <header>
+      <div id='api_status'></div>
     </header>
     <main>
       <div class="container">
@@ -151,7 +152,7 @@
 	    </div>
 	    <div class="description">
 
-	      {{ place.description|safe }}
+	      {{ place.description }}
 
 	    </div>
 
