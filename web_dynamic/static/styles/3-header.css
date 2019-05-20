@@ -12,3 +12,17 @@ header {
 	width: 100%;
 	border-bottom: 1px solid #CCCCCC;
 }
+
+#api_status {
+	float: right;
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+	background-color: #CCCCCC;
+	margin-right: 30px;
+	margin-top: 15px;
+}
+
+#api_status.available {
+	background-color: #FF545F;
+}
