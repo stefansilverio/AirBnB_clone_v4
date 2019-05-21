@@ -8,7 +8,11 @@ $('document').ready(function () {
     } else if (!$(this).is(':checked')) {
       delete amens[id];
     }
-    $('.amenities h4').text(Object.values(amens).join(', '));
+    if (Object.values(amens).length === 0) {
+      $('.amenities h4').html("&nbsp;")
+    } else {
+      $('.amenities h4').text(Object.values(amens).join(', '));
+    }
   });
 
   $.get('http://0.0.0.0:5001/api/v1/status/', function (data) {
