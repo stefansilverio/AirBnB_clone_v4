@@ -9,6 +9,10 @@ $('document').ready(function () {
       delete amens[id];
     }
     console.log(amens);
-    $('.amenities h4').text(Object.values(amens).join(', '));
+    if (Object.values(amens).length === 0) {
+      $('.amenities h4').html("&nbsp;")
+    } else {
+      $('.amenities h4').text(Object.values(amens).join(', '));
+    }
   });
 });

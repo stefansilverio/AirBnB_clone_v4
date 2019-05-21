@@ -1,6 +1,6 @@
 $('document').ready(function () {
   let amens = {};
-  $('input[type=checkbox]').change(function () {
+  $('.amenities input[type=checkbox]').change(function () {
     let name = $(this).attr('data-name');
     let id = $(this).attr('data-id');
     if ($(this).is(':checked')) {
@@ -12,6 +12,32 @@ $('document').ready(function () {
       $('.amenities h4').html("&nbsp;")
     } else {
       $('.amenities h4').text(Object.values(amens).join(', '));
+    }
+  });
+
+  let states = {};
+  let cities = {};
+  $('.locations input[type=checkbox]').change(function () {
+    let name = $(this).attr('data-name');
+    let id = $(this).attr('data-id');
+    if ($(this).is(':checked')) {
+      if ($(this).attr('data-class') === "State") {
+        states[id] = name;
+      } else if ($(this).attr('data-class') === "City") {
+        cities[id] = name;
+      }
+    } else if (!$(this).is(':checked')) {
+      if ($(this).attr('data-class') === "State") {
+        delete states[id];
+      } else if ($(this).attr('data-class') === "City") {
+        delete cities[id];
+      }
+    }
+    let locats = Object.assign({}, states, cities)
+    if (Object.values(locats).length === 0) {
+      $('.locations h4').html("&nbsp;")
+    } else {
+      $('.locations h4').text(Object.values(locats).join(', '));
     }
   });
 
@@ -76,8 +102,9 @@ $('document').ready(function () {
 
   $('button').click(function () {
     let payload = {};
-    let ids = Object.keys(amens);
-    payload['amenities'] = ids;
+    payload['amenities'] = Object.keys(amens);
+    payload['states'] = Object.keys(states);
+    payload['cities'] = Object.keys(cities);
     postAmens(payload);
     console.log('Clicked');
   });
